@@ -48,11 +48,11 @@ def home():
         "xallowduplicate": "True"
         })
     url = "https://x1.cardknox.com/gatewayjson"
-    print("Hi")
+    print("Heyo")
     response = requests.request(
                 "POST", url, headers=headers, data=payload)
     response = response.json()   
-    print(response) 
+    print(response)
     return json.dumps({'status':'OK', 'response':response})
 
 if __name__ == "__main__":
