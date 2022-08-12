@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://cdn.cardknox.com/sdk-js/1.0.2111.1801-beta/cardknox-sdk.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light bg-gradient rounded h-80 p-4" style="--bs-bg-opacity: .5;">
+
+
+
+
+
+                    <div class="d-flex flex-row-reverse">
+
+                        <button id="loadsettings" type="" class="btn btn-primary bg-gradient bi bi-gear-fill"
+                            data-bs-toggle="modal" data-bs-target="#settingsmodal">
+
+                        </button>
+                    </div>
+                    <form id="payment-form" method="post" action="" class="row g-2 ">
+
+
+                        <p class="h6">Customer information</p>
+                        <div class="col-md-3 form-floating">
+                            <input type="text" class="form-control " id="firstname" name="xBillFirstName"
+                                placeholder="John">
+                            <label for="firstname" class="text-muted">First Name</label>
+                        </div>
+                        <div class="col-md-3 form-floating">
+                            <input type="text" class="form-control" id="lastname" name="xBillLastName"
+                                placeholder="Doe">
+                            <label for="lastname" class="text-muted">Last Name</label>
+                        </div>
+
+                        <div class="col-md-3 form-floating">
+                            <input type="text" class="form-control" id="email" name="xEmail"
+                                placeholder="test@test.com">
+                            <label for="email" class="text-muted">Email</label>
+                        </div>
+                        <div class="col-md-3 form-floating">
+                            <input type="text" class="form-control" id="phone" name="xBillMobile"
+                                placeholder="1234567890">
+                            <label for="phone" class="text-muted">Phone</label>
+                        </div>
+
+                        <div class="col-md-4 form-floating">
+                            <input type="text" class="form-control" id="street" name="xBillStreet" placeholder="123">
+                            <label for="street" class="text-muted">Address</label>
+                        </div>
+
+
+                        <div class="col-md-3 form-floating">
+                            <input type="text" class="form-control" id="city" name="xBillCity" placeholder="123">
+                            <label for="city" class="text-muted">City</label>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-floating">
+                                <select id="state" name="xBillState" class="form-select"
+                                    aria-label="Floating label select example">
+                                    <option></option>
+                                    <option>NY</option>
+                                    <option>NJ</option>
+                                </select>
+                                <label for="state" class="text-muted">State</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 form-floating">
+                            <input type="text" class="form-control" id="zip" name="xBillZip" placeholder="12345">
+                            <label for="zip" class="text-muted">Zip</label>
+                        </div>
+                        <p class="h6">Payment information</p>
+                        <div class="col-md-2 form-floating">
+                            <input type="text" class="form-control" id="amount" name="xAmount" placeholder="Doe">
+                            <label for="amount" class="text-muted">Amount</label>
+                        </div>
+                        <div class="col-md-3 form-floating">
+                            <iframe data-ifields-id="card-number" data-ifields-placeholder="Card Number"
+                                src="https://cdn.cardknox.com/ifields/2.14.2207.1101-beta/ifield.htm"></iframe>
+                            <input data-ifields-id="card-number-token" type="hidden" class="form-control" id="card"
+                                name="card" placeholder="John">
+                        </div>
+                        <div class="col-md-2 form-floating text-nowrap ">
+                            <input type="text" class="form-control " id="exp" name="exp" placeholder="Doe">
+                            <label for="exp" class="text-muted">Exp (MMDD)</label>
+                        </div>
+                        <div class="col-md-1 form-floating">
+                            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Doe">
+                            <label for="cvv" class="text-muted">Cvv</label>
+                        </div>
+
+                        <div class="d-grid gap-2 col-12 mx-auto">
+                            <button id="paymentbutton" type="button" class="btn btn-primary bg-gradient ">Process
+
+
+                            </button>
+
+
+
+                        </div>
+
+
+
+                    </form>
+
+
+
+
+                    <div class="modal fade" id="settingsmodal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body ">
+
+                                    <form id="paymentform" method="post" action="" class="row g-2 ">
+
+                                        <p class="h6">Integration Type</p>
+
+                                        <div class="col-md-12">
+                                            <div class="btn-group" role="group"
+                                                aria-label="Basic radio toggle button group">
+                                                <input type="radio" class="btn-check" name="btnradio" id="apiradio"
+                                                    autocomplete="off" value="apiradio">
+                                                <label class="btn btn-outline-primary" for="apiradio">API</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="bbposradio"
+                                                    autocomplete="off" value="bbposradio">
+                                                <label class="btn btn-outline-primary" for="bbposradio">BBPOS</label>
+
+                                                <input type="radio" class="btn-check" name="btnradio" id="jssdkradio"
+                                                    autocomplete="off" value="jssdkradio">
+                                                <label class="btn btn-outline-primary" for="jssdkradio">JSSDK</label>
+                                            </div>
+                                        </div>
+
+
+                                        <p class="h6 mt-5">Transaction Settings</p>
+
+                                        <div class="col-md-8 form-floating">
+                                            <input type="text" class="form-control " id="key" name="key"
+                                                placeholder="xxxxxx">
+                                            <label for="key" class="text-muted">Key</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating">
+                                                <select id="command" name="command" class="form-select"
+                                                    aria-label="Floating label select example">
+
+                                                    <option>cc:sale</option>
+                                                    <option>cc:authonly</option>
+                                                    <option>ebtonline:fssale</option>
+                                                </select>
+                                                <label for="command" class="text-muted">Transaction Type</label>
+                                            </div>
+                                        </div>
+
+                                        <p class="h6 mt-5">Device Settings (JSSDK)</p>
+                                        <div class="col-md-8 form-floating">
+                                            <input type="text" class="form-control " id="ip" name="ip"
+                                                placeholder="xxxxxx">
+                                            <label for="ip" class="text-muted">IP Address</label>
+                                        </div>
+                                        <div class="col-md-4 form-floating">
+                                            <input type="text" class="form-control " id="port" name="port"
+                                                placeholder="xxxxxx">
+                                            <label for="port" class="text-muted">Port</label>
+                                        </div>
+
+
+
+
+
+
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" id="savesettings" class="btn btn-primary bg-gradient">Save
+                                        changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="modal fade" id="pinmodal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog ">
+                                <div class="modal-content">
+
+                                    <div class="modal-body">
+
+                                        <div class="container p-3 mt-3 bg-light border rounded ">
+                                            <form action="https://test.paysecure.acculynk.net/PINpad" id="pinpadform"
+                                                method="post" target="my_iframe">
+                                                <div class="form-row">
+                                                    <div class="form-group col-md">
+                                                        <input type="hidden" id="accuid" name="AccuId" value="">
+                                                    </div>
+                                                    <div class="form-group col-md">
+                                                        <input type="hidden" id="acculanguage" name="AccuLanguage"
+                                                            value="en-US">
+                                                    </div>
+                                                    <div class="form-group col-md">
+                                                        <input type="hidden" id="accureturnurl" name="AccuReturnURL"
+                                                            value="https://cardknoxdemo.com/chargeknox2/pinpadresponse.php">
+                                                        <!--  value="http://localhost/chargeknox2/pinpadresponse.php"> value="https://cardknoxdemo.com/chargeknox2/pinpadresponse.php"> -->
+                                                    </div>
+                                                    <input type="hidden" name="customid" value="customid1">
+                                                </div>
+                                            </form>
+                                            <iframe class="embed-responsive " id="pinpadiframe" name="my_iframe" src=""
+                                                height="530" frameBorder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="toast-container ">
+                    <div role="alert" aria-live="assertive" aria-atomic="true"
+                        class="toast position-absolute  bottom-0 end-0   overflow-auto " data-bs-autohide="false"
+                        style="width: 500px; max-height: 500px;">
+                        <div id="toastheadcolor" class="toast-header bg-success bg-gradient text-white">
+                            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                            <strong class="me-auto">Transaction Response</strong>
+                            <small id="smallstatus">11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div id="toastbodydata" class="toast-body">
+
+                            <table id="myTable" class="table table-bordered border-secondary  ">
+
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.cardknox.com/ifields/2.14.2207.1101-beta/ifields.min.js"></script>
+    <script>
+
+        $(function () {
+            $('button').click(function () {
+                var card = $('#card').val();
+                var amount = $('#amount').val();
+                var exp = $('#exp').val();
+                var fname = $('#firstname').val();
+                var lname = $('#lastname').val();
+                var street = $('#street').val();
+                var city = $('#city').val();
+                var state = $('#state').val();
+                var zip = $('#zip').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();                
+                $.ajax({
+                    url: '/submit',
+                    data: $('form').serialize(),
+                    type: 'POST',
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+
+        function test() {
+            console.log("Hello!");
+        }
+        setAccount("ifields_artemisdeva3eaabf07c37423a9b4a999930d", "ityuet", "234542")
+        enable3DS('staging', handle3DSResults);
+
+        function handle3DSResults(actionCode, xCavv, xEciFlag, xRefNum, xAuthenticateStatus, xSignatureVerification) {
+            let url = "https://webhook.site/4009e427-f610-4454-a291-6ba0617942bb"
+            var postData = {
+                xRefNum: xRefNum,
+                xCavv: xCavv,
+                xEci: xEciFlag,
+                x3dsAuthenticationStatus: xAuthenticateStatus,
+                x3dsSignatureVerificationStatus: xSignatureVerification,
+                x3dsActionCode: actionCode,
+                x3dsError: ck3DS.error
+            };
+
+            $.ajax({
+                method: "POST",
+                url: url,
+                data: postData
+            }).done(function (resp) {
+                // handle the server response
+            })
+                .fail(function (xhr, status, err) {
+                    // handle a failure
+                });
+        }
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var submitBtn = document.getElementById('submit-btn');
+
+            getTokens(
+                function () {
+                    document.getElementById('payment-form').submit();
+                },
+                function () { //onError
+                    submitBtn.disabled = false;
+                },
+                30000, //30 second timeout
+            );
+        });
+        window.onload = test();
+    </script>
+
+
+</body>
+
+</html>
