@@ -36,45 +36,41 @@
 
                         </button>
                     </div>
-                    <form id="payment-form" method="post" action="" class="row g-2 ">
+                    <form role="form" class="row g-2 ">
 
 
                         <p class="h6">Customer information</p>
                         <div class="col-md-3 form-floating">
-                            <input type="text" class="form-control " id="firstname" name="xBillFirstName"
-                                placeholder="John">
+                            <input type="text" class="form-control " id="firstname" name="firstname" placeholder="John">
                             <label for="firstname" class="text-muted">First Name</label>
                         </div>
                         <div class="col-md-3 form-floating">
-                            <input type="text" class="form-control" id="lastname" name="xBillLastName"
-                                placeholder="Doe">
+                            <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Doe">
                             <label for="lastname" class="text-muted">Last Name</label>
                         </div>
 
                         <div class="col-md-3 form-floating">
-                            <input type="text" class="form-control" id="email" name="xEmail"
-                                placeholder="test@test.com">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="test@test.com">
                             <label for="email" class="text-muted">Email</label>
                         </div>
                         <div class="col-md-3 form-floating">
-                            <input type="text" class="form-control" id="phone" name="xBillMobile"
-                                placeholder="1234567890">
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="1234567890">
                             <label for="phone" class="text-muted">Phone</label>
                         </div>
 
                         <div class="col-md-4 form-floating">
-                            <input type="text" class="form-control" id="street" name="xBillStreet" placeholder="123">
+                            <input type="text" class="form-control" id="street" name="street" placeholder="123">
                             <label for="street" class="text-muted">Address</label>
                         </div>
 
 
                         <div class="col-md-3 form-floating">
-                            <input type="text" class="form-control" id="city" name="xBillCity" placeholder="123">
+                            <input type="text" class="form-control" id="city" name="city" placeholder="123">
                             <label for="city" class="text-muted">City</label>
                         </div>
                         <div class="col-md-3">
                             <div class="form-floating">
-                                <select id="state" name="xBillState" class="form-select"
+                                <select id="state" name="state" class="form-select"
                                     aria-label="Floating label select example">
                                     <option></option>
                                     <option>NY</option>
@@ -84,26 +80,26 @@
                             </div>
                         </div>
                         <div class="col-md-2 form-floating">
-                            <input type="text" class="form-control" id="zip" name="xBillZip" placeholder="12345">
+                            <input type="text" class="form-control" id="zip" name="zip" placeholder="12345">
                             <label for="zip" class="text-muted">Zip</label>
                         </div>
                         <p class="h6">Payment information</p>
                         <div class="col-md-2 form-floating">
-                            <input type="text" class="form-control" id="amount" name="xAmount" placeholder="Doe">
+                            <input type="text" class="form-control" id="amount" name="amount" placeholder="Doe">
                             <label for="amount" class="text-muted">Amount</label>
                         </div>
                         <div class="col-md-3 form-floating">
                             <iframe data-ifields-id="card-number" data-ifields-placeholder="Card Number"
                                 src="https://cdn.cardknox.com/ifields/2.14.2207.1101-beta/ifield.htm"></iframe>
                             <input data-ifields-id="card-number-token" type="hidden" class="form-control" id="card"
-                                name="card" placeholder="John">
+                                name="card" placeholder="5354234532543434">
                         </div>
                         <div class="col-md-2 form-floating text-nowrap ">
                             <input type="text" class="form-control " id="exp" name="exp" placeholder="Doe">
                             <label for="exp" class="text-muted">Exp (MMDD)</label>
                         </div>
                         <div class="col-md-1 form-floating">
-                            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="Doe">
+                            <input type="text" class="form-control" id="cvv" name="cvv" placeholder="123">
                             <label for="cvv" class="text-muted">Cvv</label>
                         </div>
 
@@ -279,77 +275,49 @@
     <script src="https://cdn.cardknox.com/ifields/2.14.2207.1101-beta/ifields.min.js"></script>
     <script>
 
-        $(function () {
-            $('button').click(function () {
-                var card = $('#card').val();
-                var amount = $('#amount').val();
-                var exp = $('#exp').val();
-                var fname = $('#firstname').val();
-                var lname = $('#lastname').val();
-                var street = $('#street').val();
-                var city = $('#city').val();
-                var state = $('#state').val();
-                var zip = $('#zip').val();
-                var phone = $('#phone').val();
-                var email = $('#email').val();                
-                $.ajax({
-                    url: '/submit',
-                    data: $('form').serialize(),
-                    type: 'POST',
-                    success: function (response) {
-                        console.log(response);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+        function call1() {
+            var card = $('#card').val();
+            var amount = $('#amount').val();
+            var exp = $('#exp').val();
+            var fname = $('#firstname').val();
+            var lname = $('#lastname').val();
+            var street = $('#street').val();
+            var city = $('#city').val();
+            var state = $('#state').val();
+            var zip = $('#zip').val();
+            var phone = $('#phone').val();
+            var email = $('#email').val();
+            $.ajax({
+                url: '/submit',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
             });
-        });
+        };
 
         function test() {
             console.log("Hello!");
         }
         setAccount("ifields_artemisdeva3eaabf07c37423a9b4a999930d", "ityuet", "234542")
-        enable3DS('staging', handle3DSResults);
-
-        function handle3DSResults(actionCode, xCavv, xEciFlag, xRefNum, xAuthenticateStatus, xSignatureVerification) {
-            let url = "https://webhook.site/4009e427-f610-4454-a291-6ba0617942bb"
-            var postData = {
-                xRefNum: xRefNum,
-                xCavv: xCavv,
-                xEci: xEciFlag,
-                x3dsAuthenticationStatus: xAuthenticateStatus,
-                x3dsSignatureVerificationStatus: xSignatureVerification,
-                x3dsActionCode: actionCode,
-                x3dsError: ck3DS.error
-            };
-
-            $.ajax({
-                method: "POST",
-                url: url,
-                data: postData
-            }).done(function (resp) {
-                // handle the server response
-            })
-                .fail(function (xhr, status, err) {
-                    // handle a failure
-                });
-        }
-        document.getElementById('payment-form').addEventListener('submit', function (e) {
+        document.getElementById('form').addEventListener('submit', function (e) {
             e.preventDefault();
             var submitBtn = document.getElementById('submit-btn');
 
             getTokens(
                 function () {
-                    document.getElementById('payment-form').submit();
+                    document.getElementById('form').submit();
                 },
                 function () { //onError
                     submitBtn.disabled = false;
                 },
                 30000, //30 second timeout
             );
-        });
-        window.onload = test();
+        }, call1());
     </script>
 
 

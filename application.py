@@ -9,21 +9,25 @@ application = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@application.route('/submit', methods=['POST'])
+@application.route('/submit', methods=['POST'],)
 def home():
+    print("Hello!")
     card = request.form["card"]
-    amount = request.form["xAmount"]
+    amount = request.form["amount"]
     exp = request.form["exp"]
-    fname = request.form["xBillFirstName"]
-    lname = request.form["xBillLastName"]
-    street = request.form["xBillStreet"]
-    city = request.form["xBillCity"]
-    state = request.form["xBillState"]
-    zip = request.form["xBillZip"]
-    mobile = request.form["xBillMobile"]
-    email = request.form["xEmail"]
-    refid = request.form["x3dsReferenceId"]
-    istatus = request.form["x3dsInitializeStatus"]
+    fname = request.form["firstname"]
+    lname = request.form["lastname"]
+    street = request.form["street"]
+    city = request.form["city"]
+    print('lol')
+    state = request.form["state"]
+    zip = request.form["zip"]
+    mobile = request.form["phone"]
+    print('lol')
+    email = request.form["email"]
+#    refid = request.form["x3dsReferenceId"]
+#    istatus = request.form["x3dsInitializeStatus"]
+    print('lol')
     print(card, amount, exp)
     headers = {
         'Content-Type': 'application/json'
